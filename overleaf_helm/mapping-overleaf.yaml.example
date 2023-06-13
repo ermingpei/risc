@@ -1,0 +1,10 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: overleaf
+  namespace: overleaf
+spec:
+  hostname: "overleaf.risc.c3.ca"
+  prefix: /
+  service: overleaf

@@ -1,0 +1,11 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: jupyterhub
+  namespace: jhub
+spec:
+  hostname: "jupyter.risc.c3.ca"
+  prefix: /
+  service: proxy-public 
+  use_websocket: true

@@ -1,0 +1,11 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: nginx-backend
+spec:
+  hostname: "*"
+  prefix: /nginx/
+  service: nginx-service
+  docs:
+    path: "/.ambassador-internal/openapi-docs"

@@ -1,0 +1,11 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: nginx-backend
+  namespace: default
+spec:
+  hostname: "nginx.risc.c3.ca"
+  prefix: /
+  service: nginxsvc
+  #service: https://nginxsvc

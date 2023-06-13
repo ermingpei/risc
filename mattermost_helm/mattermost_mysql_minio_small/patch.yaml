@@ -1,0 +1,9 @@
+spec:
+  clusterIP: 10.98.250.40
+  clusterIPs:
+  - 10.98.250.40
+  ports:
+  - port: 8065
+    targetPort: 8065
+    name: "http"
+  type: LoadBalancer

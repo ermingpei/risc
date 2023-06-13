@@ -1,0 +1,25 @@
+env:
+  TZ: UTC
+  SHARELATEX_MONGO_URL: mongodb://my-mongodb.overleaf.svc.cluster.local/sharelatex
+  SHARELATEX_REDIS_HOST: my-redis-master.overleaf.svc.cluster.local
+  SHARELATEX_REDIS_PASS: j8gb1Ze3xR
+  REDIS_HOST: my-redis-master.overleaf.svc.cluster.local
+  SHARELATEX_SITE_URL: https://overleaf.risc.c3.ca/login
+  SHARELATEX_NAV_TITLE: ALLIANCE_OVERLEAF
+  #SHARELATEX_HEADER_IMAGE_URL: https://www.example.com/mylogo.png
+  SHARELATEX_ADMIN_EMAIL: 
+  SHARELATEX_BEHIND_PROXY: true
+  SHARELATEX_SECURE_COOKIE: true 
+  SHARELATEX_ALLOW_PUBLIC_ACCESS: true
+  SHARELATEX_ALLOW_ANONYMOUS_READ_AND_WRITE_SHARING: true
+  EMAIL_CONFIRMATION_DISABLED: true
+  SHARELATEX_RESTRICT_INVITES_TO_EXISTING_ACCOUNTS: false
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: overleaf
+  namespace: overleaf
+spec:
+  type: LoadBalancer

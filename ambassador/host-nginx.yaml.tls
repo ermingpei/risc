@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: host-nginx
+  namespace: ambassador
+spec:
+  hostname: nginx.risc.c3.ca
+  #acmeProvider:
+   # email: erming.pei@gmail.com
+  tlsSecret:
+    name: nginx-certs-keys
+

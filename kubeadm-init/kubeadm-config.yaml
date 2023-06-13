@@ -1,0 +1,25 @@
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+nodeRegistration:
+  kubeletExtraArgs:
+    cloud-provider: "external"
+
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: v1.22.0
+networking:
+  podSubnet: 10.28.0.0/16
+apiServer:
+  extraArgs:
+    cloud-provider: "external"
+controllerManager:
+  extraArgs:
+    cloud-provider: "external"
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs
+ipvs:
+  strictARP: true

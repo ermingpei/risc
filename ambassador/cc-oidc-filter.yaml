@@ -1,0 +1,21 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Filter
+metadata:
+  name: cc-oidc-filter
+  namespace: ambassador
+spec:
+  OAuth2:
+    authorizationURL: 
+    extraAuthorizationParameters:
+      audience:  ## OIDC Audience
+    clientID: 
+    secret: 
+    protectedOrigins:
+    - origin:
+    - origin:
+    - origin:
+    - origin: 
+    - origin:
+     # includeSubdomains: true
+

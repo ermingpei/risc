@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginxsvc
+  labels:
+    app: nginx
+spec:
+  nodeSelector:
+    '!node-role.kubernetes.io/master': ''
+  #type: NodePort
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    protocol: TCP
+    name: https
+  selector:
+    app: nginx
+

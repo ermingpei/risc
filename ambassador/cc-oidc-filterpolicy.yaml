@@ -1,0 +1,17 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: FilterPolicy
+metadata:
+  name: cc-oidc-filterpolicy
+  namespace: ambassador
+spec:
+  rules:
+    - host: "*"
+      path: /
+      filters:
+        - name: cc-oidc-filter ## Enter the Filter name from above
+          #arguments:
+           # scope:
+           # - "scopevalue1"
+           # - "scopevalue2"
+

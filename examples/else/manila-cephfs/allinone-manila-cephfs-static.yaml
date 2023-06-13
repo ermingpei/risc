@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manila-static-pv1
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 1G
+  csi:
+    #driver: cephfs.manila.csi.openstack.org
+    driver: manila.csi.openstack.org
+    volumeHandle: 3f02deb8-8873-46c4-be7c-aef5955b7e75
+    nodeStageSecretRef:
+      name: manila-csi-secrets
+      namespace: kube-system
+    nodePublishSecretRef:
+      name: manila-csi-secrets
+      namespace: kube-system
+    volumeAttributes:
+      shareID: 3f02deb8-8873-46c4-be7c-aef5955b7e75
+      shareAccessID: 4aa934e8-78af-4f49-bf58-005b1452dd4a
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: manila-static-pvc1
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1G
+  storageClassName: ""
+  volumeName: manila-static-pv1
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: manila-staticpv-pod
+spec:
+  containers:
+    - name: nginx-manila-staticpv
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: manila-pvc
+          mountPath: /var/lib/www
+  volumes:
+    - name: manila-pvc
+      persistentVolumeClaim:
+        claimName: manila-static-pvc1
+        readOnly: false
+

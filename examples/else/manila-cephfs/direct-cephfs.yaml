@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: direct-cephfs-pv
+spec:
+  accessModes:
+    - ReadWriteMany
+  capacity:
+    storage: 1Gi
+  csi:
+    driver: cephfs.csi.ceph.com
+
+    # Unique identifier of the volume.
+    # Can be anything, but we recommend to set it to the PersistentVolume name.
+    volumeHandle: direct-cephfs-pv
+
+    # Secret name and namespace in both nodeStageSecretRef
+    # and nodePublishSecretRef must match the Secret created above.
+    nodeStageSecretRef:
+      name: direct-cephfs-secret
+      namespace: default
+    nodePublishSecretRef:
+      name: direct-cephfs-secret
+      namespace: default
+
+    volumeAttributes:
+      # The volume attributes below are passed to the cephfs-csi driver.
+      # For complete list of available volume parameters please see
+      # https://github.com/ceph/ceph-csi/blob/devel/docs/deploy-cephfs.md
+
+      monitors: 10.30.201.3:6789,10.30.202.3:6789,10.30.203.3:6789
+      rootPath: /volumes/_nogroup/2922e5bf-05ff-4653-a943-6763e4a2bdb0
+      provisionVolume: "false"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: direct-cephfs-pvc
+spec:
+  accessModes:
+   - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: direct-cephfs-pv # must match PV name above
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-server
+spec:
+  containers:
+   - name: web-server
+     image: nginx
+     volumeMounts:
+       - mountPath: /var/lib/www/html
+         name: mypvc
+  volumes:
+   - name: mypvc
+     persistentVolumeClaim:
+       claimName: direct-cephfs-pvc # must match PVC name above
+       readOnly: false

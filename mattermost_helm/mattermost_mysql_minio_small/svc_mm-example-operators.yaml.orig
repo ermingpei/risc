@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    mattermost.com/last-applied: UEsDBBQACAAIAAAAAAAAAAAAAAAAAAAAAAAIAAAAb3JpZ2luYWzMkr9u3DAMxt+Fs+yc3TSJPRZdOrQ9dOhSZKBluhFOFgWKTlsc9O6FbBxiFMh1zSh95I8f/5xhJsURFaE/A4bAiuo4pPJMJM/OUo0+PmF9WgaSQEqpdnyj7ElQqVqCEI5/KgpjZBc0QQ8qC0E24HEgv6IwRuhhRlWSmZOCAReSovdrufpFqS3PN3ut5M0V/cY5eqo4lrIs6T8EocSLWHotOxsIOL8qb2qKuBH2vvlXIPlGEwkFSwn6H6U9950kbW6v2XpuBlJswMDg2Z6+FtZH8rQ1WuZmwHJQYe9JLj8nF0bo4fPexnX3iysJdw9tQ1M7Va3tDtXtNDUVth1W74bbrhvv2647NJAfs4EUyZY9Wb8kJfl0hB6+cCAwEFn00mU8Citb9tDDk2p88VEWvMVC/3C4e29AUX6SHtefVc7mOmImFWfTHnP/D+YSkh8NJPJkleVtnleZqaIu6/V7xvEDegy27PScc/4bAAD//1BLBwhfvtYobQEAAHgDAABQSwECFAAUAAgACAAAAAAAX77WKG0BAAB4AwAACAAAAAAAAAAAAAAAAAAAAAAAb3JpZ2luYWxQSwUGAAAAAAEAAQA2AAAAowEAAAAA
+    service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  creationTimestamp: "2022-08-03T15:48:50Z"
+  labels:
+    app: mattermost
+    installation.mattermost.com/installation: mm-example-operators
+    installation.mattermost.com/resource: mm-example-operators
+  name: mm-example-operators
+  namespace: mattermost
+  ownerReferences:
+  - apiVersion: installation.mattermost.com/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Mattermost
+    name: mm-example-operators
+    uid: 6821ef2f-2c90-4ff1-a29a-3b499d729901
+  resourceVersion: "80810820"
+  uid: de2ff4fe-afd0-42cb-bc34-9dbb83f7045f
+spec:
+  clusterIP: None
+  clusterIPs:
+  - None
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: app
+    port: 8065
+    protocol: TCP
+    targetPort: app
+  - appProtocol: http
+    name: metrics
+    port: 8067
+    protocol: TCP
+    targetPort: metrics
+  selector:
+    app: mattermost
+    installation.mattermost.com/installation: mm-example-operators
+    installation.mattermost.com/resource: mm-example-operators
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

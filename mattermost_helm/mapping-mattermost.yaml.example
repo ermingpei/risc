@@ -1,0 +1,10 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: mattermost-team
+  namespace: mattermost
+spec:
+  hostname: "mattermost.risc.c3.ca"
+  prefix: /
+  service: mattermost-team-edition

@@ -1,0 +1,12 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: host-wildcard
+  namespace: ambassador
+spec:
+  hostname: "*"
+  requestPolicy:
+    insecure:
+      action: Reject
+  acmeProvider:
+    authority: None

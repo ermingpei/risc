@@ -1,0 +1,6 @@
+After deployed the pvpod.yaml
+$ keit pvpod-manual -- bash
+
+on the container test with
+$curl http://localhost/
+
