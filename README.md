@@ -1,6 +1,6 @@
 # RISC
 
-RISC stands for Research Interactive Services and Collaboration, a Kubernetes based platorm based on an Openstack cloud (e.g. Arbutus), on top of which multiple applications can be run and maintained with enjoying the flexibility, resilliance, and fault tolerance.  RISC also features SSO (by connecting with Alliance-IdP), auto-mapping of different services, and potentially auto-scaling of the underlying cluster. 
+RISC stands for Research Interactive Services and Collaboration, a Kubernetes based platorm based on an Openstack cloud, on top of which multiple applications can be run and maintained with enjoying the flexibility, resilliance, and fault tolerance.  RISC also features SSO (by connecting with a privte IdP or public ones such as Google/Github Auth), auto-mapping of different services, and potentially auto-scaling of the underlying cluster. 
 
 The aim of RISC project is to provide the convenience of using different research-oriented applications for researchers, as well as of the rapid deployment of the backend infrastructure for system admins. 
 
@@ -51,7 +51,7 @@ Create a cloud-config file by following the template at auth/cloud-config.
 ### 4. Kictstart
 Now, simply run the automation script (`setup_fullchain.sh`) on the master node it will automatically create the control plane and set up the worker and then deploy all the above components on both nodes. 
 ### 5. Grow it
-More worker nodes can be easily added to the cluster by runnig the following commands:
+More worker nodes can be easily added to the cluster and will be automatically deployed/configured, by runnig the following commands:
 ```
 export KUBEADM_JOIN_COMMAND=`kubeadm token create --print-join-command`
 ssh $WORKER_HOSTNAME $KUBEADM_JOIN_COMMAND
