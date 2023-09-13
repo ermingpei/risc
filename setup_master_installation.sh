@@ -6,7 +6,7 @@ hostnamectl set-hostname $hostname
 
 yum -y install yum-utils device-mapper-persistent-data lvm2 vim wget git
 yum-config-manager   --add-repo   https://download.docker.com/linux/centos/docker-ce.repo
-yum -y install docker-ce
+yum -y install docker-ce-23.0.0
 mkdir /etc/docker
 cat > /etc/docker/daemon.json <<EOF
 {

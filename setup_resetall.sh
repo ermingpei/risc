@@ -7,8 +7,8 @@ systemctl stop firewalld
 systemctl daemon-reload
 yum -y remove `rpm -qa|grep kube`
 rm -rf /var/lib/kubelet
-#yum -y remove `rpm -qa|grep docker`
-#rm -rf /var/lib/docker
+yum -y remove `rpm -qa|grep docker`
+rm -rf /var/lib/docker
 yum -y remove `rpm -qa|grep container`
 rm -rf /var/lib/containerd
 rm -rf /var/lib/etcd
